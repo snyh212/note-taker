@@ -1,7 +1,7 @@
 //dependancies/
 //read and write const/
-//set up server
-//static middlewhere
+//set up server/
+//static middlewhere/
 //get route for db.json
 //POST route
 //(delete) route
@@ -17,3 +17,8 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 const app = express();
 const PORT = process.env.PORT || 3005;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(express.static("./develop/public"));

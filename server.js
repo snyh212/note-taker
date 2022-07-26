@@ -51,3 +51,7 @@ app.post("/api/notes", function(req, res) {
         res.json(note);
     })
 });
+
+app.listen(PORT, function() {
+    console.log("App listerning on PORT "+PORT);
+});

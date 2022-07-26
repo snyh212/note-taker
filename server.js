@@ -23,16 +23,6 @@ app.use(express.json());
 
 app.use(express.static("./develop/public"));
 
-app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "./develop/public/notes.html"));
-});
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./develop/public/index.html"));
-});
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./develop/public/index.html"));
-});
-
 app.get("/api/notes", function(req, res) {
     readFileAsync("./develop/db/db.json", "utf-8").then(function(data) {
         notes = [].concat(JSON.parse(data))
@@ -50,6 +40,16 @@ app.post("/api/notes", function(req, res) {
         writeFileAsync("./develop/db/db.json", JSON.stringify(notes))
         res.json(note);
     })
+});
+
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "./develop/public/notes.html"));
+});
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "./develop/public/index.html"));
+});
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "./develop/public/index.html"));
 });
 
 app.listen(PORT, function() {
